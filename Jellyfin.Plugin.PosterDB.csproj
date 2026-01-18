@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>Jellyfin.Plugin.PosterDB</AssemblyName>
     <RootNamespace>Jellyfin.Plugin.PosterDB</RootNamespace>
-    <Version>1.0.3.0</Version>
+    <Version>1.0.0.0</Version>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
