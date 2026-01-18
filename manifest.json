@@ -1,0 +1,21 @@
+[
+  {
+    "name": "PosterDB",
+    "guid": "a4df60d5-8c0f-4b4a-9e5c-3f8a2e1b7c9d",
+    "overview": "ThePosterDB image provider for Jellyfin",
+    "description": "Integrates ThePosterDB as an image provider in Jellyfin's Edit Images dialog. Search and download high-quality posters from ThePosterDB directly within Jellyfin.",
+    "owner": "RadicalMuffinMan",
+    "category": "Metadata",
+    "imageUrl": "https://raw.githubusercontent.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/main/images/icon.png",
+    "versions": [
+      {
+        "changelog": "Initial release for ThePosterDB image provider integration",
+        "targetAbi": "10.10.7.0",
+        "version": "1.0.0.0",
+        "sourceUrl": "https://github.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/releases/download/v1.0.0/Jellyfin.Plugin.PosterDB_1.0.0.0.zip",
+        "checksum": "0DA7E14B796C984FED5C74F8C566A46D",
+        "timestamp": "2026-01-18T00:00:00Z"
+      }
+    ]
+  }
+]
