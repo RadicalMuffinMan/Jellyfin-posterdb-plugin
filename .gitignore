@@ -1,0 +1,48 @@
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.so
+*.dylib
+*.o
+*.a
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.sln.iml
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.idea/
+
+# Rider
+.idea/
+*.sln.iml
+*.sln.iml
+
+# Local environment
+.env
+.env.local
+
+# Test results
+TestResults/
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+publish/
