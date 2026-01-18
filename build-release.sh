@@ -1,6 +1,11 @@
 #!/bin/bash
 
-VERSION="1.0.0.0"
+# Extract version from .csproj file
+VERSION=$(grep -oP '<Version>\K[^<]+' Jellyfin.Plugin.PosterDB.csproj)
+if [ -z "$VERSION" ]; then
+    VERSION="1.0.0.0"
+fi
+
 PLUGIN_NAME="Jellyfin.Plugin.PosterDB"
 
 echo "🔨 Building PosterDB Plugin v${VERSION}..."
