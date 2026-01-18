@@ -1,0 +1,25 @@
+#!/bin/bash
+
+VERSION="1.0.0.0"
+PLUGIN_NAME="Jellyfin.Plugin.PosterDB"
+
+echo "🔨 Building PosterDB Plugin v${VERSION}..."
+
+dotnet clean -c Release
+dotnet publish -c Release -o ./publish
+
+mkdir -p ./release
+
+cd publish
+zip -r "../release/${PLUGIN_NAME}_${VERSION}.zip" *.dll
+cd ..
+
+CHECKSUM=$(md5sum "./release/${PLUGIN_NAME}_${VERSION}.zip" | awk '{print $1}' | tr '[:lower:]' '[:upper:]')
+
+echo ""
+echo "Build complete!"
+echo "Package: ./release/${PLUGIN_NAME}_${VERSION}.zip"
+echo "MD5 Checksum: ${CHECKSUM}"
+echo ""
+echo "Update manifest.json with this checksum:"
+echo "   \"checksum\": \"${CHECKSUM}\""
