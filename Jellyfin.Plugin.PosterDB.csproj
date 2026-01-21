@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>Jellyfin.Plugin.PosterDB</AssemblyName>
     <RootNamespace>Jellyfin.Plugin.PosterDB</RootNamespace>
-    <Version>1.2.1.0</Version>
+    <Version>1.2.2.0</Version>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
@@ -24,19 +24,20 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Playwright" Version="1.41.0">
-      <ExcludeAssets>none</ExcludeAssets>
-      <IncludeAssets>compile; runtime; native</IncludeAssets>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Playwright" Version="1.41.0" />
   </ItemGroup>
-  
-  <Target Name="CopyPlaywrightOnly" AfterTargets="Build">
-    <ItemGroup>
-      <PlaywrightFiles Include="$(NuGetPackageRoot)microsoft.playwright\1.41.0\lib\net8.0\**\*.*" />
-      <PlaywrightFiles Include="$(NuGetPackageRoot)microsoft.playwright\1.41.0\runtimes\**\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(PlaywrightFiles)" DestinationFolder="$(OutputPath)%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>
 
   <ItemGroup>
     <EmbeddedResource Include="Configuration\*.html" />
