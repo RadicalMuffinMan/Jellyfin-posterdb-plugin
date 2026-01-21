@@ -47,6 +47,14 @@
         "sourceUrl": "https://github.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/releases/download/v1.2.3/Jellyfin.Plugin.PosterDB_1.2.3.0.zip",
         "checksum": "7B3C24964880833F157224658DC7947F",
         "timestamp": "2026-01-20T00:00:00"
+      },
+      {
+        "version": "1.2.4.0",
+        "changelog": "Updated dependencies and fixed compatibility issues with Jellyfin.",
+        "targetAbi": "10.10.3.0",
+        "sourceUrl": "https://github.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/releases/download/v1.2.4/Jellyfin.Plugin.PosterDB_1.2.4.0.zip",
+        "checksum": "86461F8F047C835E106722E4A7AA2FB2",
+        "timestamp": "2026-01-20T00:00:00"
       }
     ]
   }
