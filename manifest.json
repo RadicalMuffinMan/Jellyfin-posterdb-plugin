@@ -71,6 +71,14 @@
         "sourceUrl": "https://github.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/releases/download/v1.2.6/Jellyfin.Plugin.PosterDB_1.2.6.0.zip",
         "checksum": "7B3CE3FEF4629B10A889CBD253809B05",
         "timestamp": "2026-01-20T00:00:00"
+      },
+      {
+        "version": "1.2.7.0",
+        "changelog": "Updated  Chromium installation logging and updated build script to exclude unnecessary files",
+        "targetAbi": "10.10.3.0",
+        "sourceUrl": "https://github.com/RadicalMuffinMan/Jellyfin-posterdb-plugin/releases/download/v1.2.7/Jellyfin.Plugin.PosterDB_1.2.7.0.zip",
+        "checksum": "6C3F85E5C0EA92F90EBE82AA4F6BD131",
+        "timestamp": "2026-01-20T00:00:00"
       }
     ]
   }

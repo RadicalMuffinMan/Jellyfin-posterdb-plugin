@@ -60,8 +60,8 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
             _logger.LogInformation("Chromium browser not found. Installing automatically...");
             _logger.LogInformation("This is a one-time download (~200MB). Please wait...");
 
-            // Install Chromium via Playwright
-            var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium" });
+            // Install Chromium via Playwright CLI
+            var exitCode = Microsoft.Playwright.Program.Main(new[] { "install", "chromium", "--with-deps" });
 
             if (exitCode == 0)
             {
@@ -70,8 +70,9 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
             else
             {
                 _logger.LogWarning(
-                    "Chromium installation returned non-zero exit code: {ExitCode}. " +
-                    "Browser may still work, or you may need to install manually with: playwright install chromium",
+                    "Chromium installation returned exit code: {ExitCode}. " +
+                    "This may be normal if system dependencies need manual installation. " +
+                    "On Linux, you may need to run: sudo playwright install-deps chromium",
                     exitCode);
             }
         }
@@ -79,7 +80,8 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
         {
             _logger.LogError(ex, 
                 "Failed to auto-install Chromium browser. " +
-                "You may need to install manually with: playwright install chromium");
+                "Manual installation may be required. " +
+                "Run as jellyfin user: playwright install chromium --with-deps");
         }
     }
 
