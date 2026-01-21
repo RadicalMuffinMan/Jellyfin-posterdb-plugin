@@ -16,7 +16,7 @@ dotnet publish -c Release -o ./publish
 mkdir -p ./release
 
 cd publish
-zip "../release/${PLUGIN_NAME}_${VERSION}.zip" "${PLUGIN_NAME}.dll"
+zip -r "../release/${PLUGIN_NAME}_${VERSION}.zip" . -x "*.pdb" -x "*.json"
 cd ..
 
 CHECKSUM=$(md5sum "./release/${PLUGIN_NAME}_${VERSION}.zip" | awk '{print $1}' | tr '[:lower:]' '[:upper:]')
