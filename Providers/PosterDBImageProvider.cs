@@ -53,6 +53,8 @@ public class PosterDBImageProvider : IRemoteImageProvider, IHasOrder
 
     public async Task<IEnumerable<RemoteImageInfo>> GetImages(BaseItem item, CancellationToken cancellationToken)
     {
+        _logger.LogInformation("GetImages called for item: {ItemName} (Type: {ItemType})", item.Name, item.GetType().Name);
+        
         var results = new List<RemoteImageInfo>();
 
         try
@@ -75,13 +77,16 @@ public class PosterDBImageProvider : IRemoteImageProvider, IHasOrder
             
             var response = await _posterDBClient.SearchByTitleAsync(searchTitle, cancellationToken);
 
+            _logger.LogInformation("Search completed. Success: {Success}, Results: {Count}", 
+                response?.Success ?? false, response?.Results?.Count ?? 0);
+
             if (response?.Success == true && response.Results != null)
             {
                 foreach (var poster in response.Results)
                 {
                     var imageType = DetermineImageType(poster);
                     
-                    results.Add(new RemoteImageInfo
+                    var imageInfo = new RemoteImageInfo
                     {
                         ProviderName = Name,
                         Url = poster.FullUrl,
@@ -91,8 +96,19 @@ public class PosterDBImageProvider : IRemoteImageProvider, IHasOrder
                         Height = poster.Height,
                         Language = poster.Language,
                         CommunityRating = poster.Likes
-                    });
+                    };
+                    
+                    _logger.LogDebug("Adding image: {Url} (Type: {Type}, Size: {Width}x{Height})", 
+                        poster.FullUrl, imageType, poster.Width, poster.Height);
+                    
+                    results.Add(imageInfo);
                 }
+                
+                _logger.LogInformation("Returning {Count} images for {ItemName}", results.Count, item.Name);
+            }
+            else if (response != null && !response.Success)
+            {
+                _logger.LogWarning("Search failed: {ErrorMessage}", response.ErrorMessage ?? "Unknown error");
             }
         }
         catch (Exception ex)
