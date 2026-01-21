@@ -53,33 +53,27 @@ public class PosterDBImageProvider : IRemoteImageProvider, IHasOrder
 
     public async Task<IEnumerable<RemoteImageInfo>> GetImages(BaseItem item, CancellationToken cancellationToken)
     {
-        var apiKey = Plugin.Instance?.Configuration.ApiKey;
         var results = new List<RemoteImageInfo>();
 
         try
         {
-            var tmdbId = item.GetProviderId(MetadataProvider.Tmdb);
-            var tvdbId = item.GetProviderId(MetadataProvider.Tvdb);
-            var imdbId = item.GetProviderId(MetadataProvider.Imdb);
+            // ThePosterDB only supports title search and external IDs (TMDB/TVDB/IMDB) are not supported
+            // Always search by the item's name
+            var searchTitle = item.Name;
+            
+            // For movies, include year if available for better matching
+            if (item is Movie movie && movie.ProductionYear.HasValue)
+            {
+                searchTitle = $"{item.Name} ({movie.ProductionYear.Value})";
+            }
+            else if (item is Series series && series.ProductionYear.HasValue)
+            {
+                searchTitle = $"{item.Name} ({series.ProductionYear.Value})";
+            }
 
-            Models.SearchResponse? response = null;
-
-            if (!string.IsNullOrEmpty(tmdbId))
-            {
-                response = await _posterDBClient.SearchByTmdbIdAsync(tmdbId, apiKey, cancellationToken);
-            }
-            else if (!string.IsNullOrEmpty(tvdbId))
-            {
-                response = await _posterDBClient.SearchByTvdbIdAsync(tvdbId, apiKey, cancellationToken);
-            }
-            else if (!string.IsNullOrEmpty(imdbId))
-            {
-                response = await _posterDBClient.SearchByImdbIdAsync(imdbId, apiKey, cancellationToken);
-            }
-            else
-            {
-                response = await _posterDBClient.SearchByTitleAsync(item.Name, apiKey, cancellationToken);
-            }
+            _logger.LogInformation("Searching ThePosterDB for: {SearchTitle}", searchTitle);
+            
+            var response = await _posterDBClient.SearchByTitleAsync(searchTitle, cancellationToken);
 
             if (response?.Success == true && response.Results != null)
             {

@@ -12,25 +12,6 @@
                     <div class="verticalSection">
                         <h2 class="sectionTitle">PosterDB Configuration</h2>
                         
-                        <div class="inputContainer">
-                            <label class="inputLabel inputLabelUnfocused" for="txtApiKey">API Key</label>
-                            <input is="emby-input" type="text" id="txtApiKey" name="ApiKey" />
-                            <div class="fieldDescription">
-                                Enter your ThePosterDB API key. Get your API key from 
-                                <a href="https://theposterdb.com/api" target="_blank" rel="noopener noreferrer">ThePosterDB API Settings</a>.
-                            </div>
-                        </div>
-
-                        <div class="checkboxContainer checkboxContainer-withDescription">
-                            <label class="emby-checkbox-label">
-                                <input is="emby-checkbox" type="checkbox" id="chkPreferTextless" name="PreferTextless" />
-                                <span>Prefer Textless Posters</span>
-                            </label>
-                            <div class="fieldDescription checkboxFieldDescription">
-                                When available, prioritize textless poster versions.
-                            </div>
-                        </div>
-
                         <h3>Enable For Media Types</h3>
                         
                         <div class="checkboxContainer">
@@ -82,8 +63,6 @@
                 .addEventListener('pageshow', function() {
                     Dashboard.showLoadingMsg();
                     ApiClient.getPluginConfiguration(PosterDBConfig.pluginUniqueId).then(function (config) {
-                        document.querySelector('#txtApiKey').value = config.ApiKey || '';
-                        document.querySelector('#chkPreferTextless').checked = config.PreferTextless || false;
                         document.querySelector('#chkEnableForMovies').checked = config.EnableForMovies !== false;
                         document.querySelector('#chkEnableForShows').checked = config.EnableForShows !== false;
                         document.querySelector('#chkEnableForSeasons').checked = config.EnableForSeasons !== false;
@@ -96,8 +75,6 @@
                 .addEventListener('submit', function(e) {
                     Dashboard.showLoadingMsg();
                     ApiClient.getPluginConfiguration(PosterDBConfig.pluginUniqueId).then(function (config) {
-                        config.ApiKey = document.querySelector('#txtApiKey').value;
-                        config.PreferTextless = document.querySelector('#chkPreferTextless').checked;
                         config.EnableForMovies = document.querySelector('#chkEnableForMovies').checked;
                         config.EnableForShows = document.querySelector('#chkEnableForShows').checked;
                         config.EnableForSeasons = document.querySelector('#chkEnableForSeasons').checked;

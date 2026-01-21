@@ -12,24 +12,11 @@ public class PluginConfiguration : BasePluginConfiguration
     /// </summary>
     public PluginConfiguration()
     {
-        // Set default values
-        ApiKey = string.Empty;
-        PreferTextless = false;
         EnableForMovies = true;
         EnableForShows = true;
         EnableForSeasons = true;
         Priority = 10;
     }
-
-    /// <summary>
-    /// Gets or sets the ThePosterDB API key.
-    /// </summary>
-    public string ApiKey { get; set; }
-
-    /// <summary>
-    /// Gets or sets a value indicating whether to prefer textless posters.
-    /// </summary>
-    public bool PreferTextless { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the provider is enabled for movies.

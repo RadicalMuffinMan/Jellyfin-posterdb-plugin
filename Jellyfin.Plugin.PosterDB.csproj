@@ -4,12 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>Jellyfin.Plugin.PosterDB</AssemblyName>
     <RootNamespace>Jellyfin.Plugin.PosterDB</RootNamespace>
-    <Version>1.1.0.0</Version>
+    <Version>1.2.0.0</Version>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Playwright" Version="1.41.0" />
   </ItemGroup>
 
   <ItemGroup>
